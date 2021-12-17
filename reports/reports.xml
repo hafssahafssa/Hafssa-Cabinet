@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <report
+                id="cabinet_ordonance_report"
+                string="Ordonances Report"
+                name="cabinet.reports_templates"
+                model="cabinet.ordonance"
+                report_type="qweb-pdf"
+        />
+    </data>
+</odoo>

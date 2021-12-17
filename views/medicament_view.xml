@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="medicaments_list_view">
+            <field name="name">La liste des médicaments</field>
+            <field name="model">cabinet.medicament</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="NomMed"/>
+                    <field name="Description"/>
+                </tree>
+            </field>
+        </record>
+        <!-- explicit form view definition -->
+
+        <record model="ir.ui.view" id="medicaments_form_view">
+            <field name="name">Ls médicaments</field>
+            <field name="model">cabinet.medicament</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="NomMed"/>
+                        </group>
+                        <group>
+                            <field name="Description"/>
+                        </group>
+                        <notebook>
+                            <page string="List of ordoances ">
+                                <field name="ordonance_ids">
+                                    <tree>
+                                        <field name="ordonance_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="medicaments_action_window">
+            <field name="name">Médicaments</field>
+            <field name="res_model">cabinet.medicament</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Médicaments" id="cabinet_medicaments_cat" parent="cabinet_menu_root"
+                 sequence="7" action="medicaments_action_window"/>
+
+    </data>
+</odoo>
