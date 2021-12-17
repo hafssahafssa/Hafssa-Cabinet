@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_cabinet_ordonance,access_cabinet_ordonance,model_cabinet_ordonance,cabinet_normal_group,1,0,0,0
+access_cabinet_medicament,access_cabinet_medicament,model_cabinet_medicament,cabinet_normal_group,1,0,0,0
+access_cabinet_appoitement,access_cabinet_appoitement,model_cabinet_appoitement,cabinet_normal_group,1,0,0,0
+access_ordonance_medicament_lines,ordonance_medicament_lines,model_ordonance_medicament_lines,cabinet_normal_group,1,1,1,1
+
+access_cabinet_ordonance,access_cabinet_ordonance,model_cabinet_ordonance,cabinet_manager_group,1,1,1,1
+access_cabinet_medicament,access_cabinet_medicament,model_cabinet_medicament,cabinet_manager_group,1,1,1,1
+access_cabinet_appoitement,access_cabinet_appoitement,model_cabinet_appoitement,cabinet_manager_group,1,1,1,1
+access_ordonance_medicament_lines,ordonance_medicament_lines,model_ordonance_medicament_lines,cabinet_manager_group,1,1,1,1
+
+
+
+

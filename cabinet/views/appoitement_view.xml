@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="calender_list_view">
+            <field name="name">Calender</field>
+            <field name="model">cabinet.appoitement</field>
+            <field name="arch" type="xml">
+                <tree string="Rendez-vous">
+                    <field name="patient_id"/>
+                    <field name="date_appoi"/>
+                    <field name="motif_consultation"/>
+                </tree>
+            </field>
+        </record>
+        <record id="calender_view_form" model="ir.ui.view">
+        <field name="name">calender.form</field>
+        <field name="model">cabinet.appoitement</field>
+        <field name="arch" type="xml">
+           <form>
+               <sheet>
+                   <group>
+                      <field name="patient_id" string="patient" domain="[('type','=','patient')]"/>
+                      <field name="date_appoi"/>
+                      <field name="motif_consultation"/>
+                   </group>
+               </sheet>
+           </form>
+        </field>
+    </record>
+        <record id="appoitement_view_calendar" model="ir.ui.view">
+        <field name="name">appoitement.calendar</field>
+        <field name="model">cabinet.appoitement</field>
+        <field name="arch" type="xml">
+            <calendar date_start="date_appoi" date_stop="date_appoi" mode="month" color="patient_id">
+                 <field name="patient_id" string="patient" domain="[('type','=','patient')]"/>
+                <field name="date_appoi"/>
+                <field name="motif_consultation"/>
+
+
+            </calendar>
+        </field>
+    </record>
+
+ <!-- actions opening views on models -->
+
+
+        <record model="ir.actions.act_window" id="calender_action_window">
+            <field name="name">Calender window</field>
+            <field name="res_model">cabinet.appoitement</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <!--field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('cabinet.patient_list_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('cabinet.patient_form_view')})]"/>
+            <field name="domain">[('type','=','patient')]</field--><!--pour apparu la cettte au début-->
+
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem name="Calender" id="cabinet_calender_cat" parent="cabinet_menu_root"
+                sequence="6" action="calender_action_window"/>
+    </data>
+</odoo>

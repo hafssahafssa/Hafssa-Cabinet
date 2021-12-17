@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="patient_list_view">
+            <field name="name">La liste des patients</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="l_name"/>
+                    <field name="date_naissance"/>
+                    <field name="CIN"/>
+                    <field name="sexe"/>
+                </tree>
+            </field>
+        </record>
+        <!-- explicit form view definition -->
+        <record model="ir.ui.view" id="patient_form_view">
+            <field name="name">La formulaire des patients</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Client"/>
+                    </header>
+                    <sheet>
+                        <group string="les informations personnelle">
+                            <field name="name"/>
+                            <field name="l_name"/>
+                            <field name="date_naissance"
+                               attrs="{'invisible':[('sexe','=','female')]}"
+                            />
+                            <field name="CIN"/>
+                            <field name="sexe"/>
+
+                            <field name="assure"/>
+                            <field name="image"/>
+
+                            <field name="statut"/>
+                        </group>
+                        <notebook>
+                            <page string="Liste des ordonances">
+                                <field name="ordonance_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="patient_action_window">
+            <field name="name">Patient window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('cabinet.patient_list_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('cabinet.patient_form_view')})]"/><!--pour apparu la cettte view hériter au début-->
+            <field name="domain">[('type','=','patient')]</field>
+            <field name="context">{'default_type': 'patient'}</field>
+        </record>
+        <!-- Top menu item -->
+        <menuitem name="Cabinet" id="cabinet_menu_root"/>
+        <menuitem name="Patient" id="cabinet_patient_cat" parent="cabinet_menu_root"
+                  sequence="1" action="patient_action_window"/>
+
+
+    </data>
+</odoo>
