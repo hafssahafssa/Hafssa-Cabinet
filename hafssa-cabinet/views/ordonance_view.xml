@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="ordonance_list_view">
+            <field name="name">La liste des consultations</field>
+            <field name="model">cabinet.ordonance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date_ordo"/>
+                    <field name="patient_id"/>
+                </tree>
+            </field>
+        </record>
+        <!-- explicit form view definition -->
+
+        <record model="ir.ui.view" id="ordonance_form_view">
+            <field name="name">Ordonance</field>
+            <field name="model">cabinet.ordonance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="date_ordo"/>
+                            <field name="patient_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Medicaments">
+                                <field name="medicament_ids">
+                                    <tree editable="botoom">
+                                        <field name="medicament_id"/>
+                                        <field name="Dosa_medicament"/>
+                                        <field name="Nbr_fois_Med" hide=""/>
+                                        <field name="Quantite"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="ordonance_action_window">
+            <field name="name">Ordonance</field>
+            <field name="res_model">cabinet.ordonance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem name="Ordonance" id="cabinet_ordonance_cat" parent="cabinet_menu_root"
+               sequence="6" action="ordonance_action_window"/>
+
+
+</odoo>
