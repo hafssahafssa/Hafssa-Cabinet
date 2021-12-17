@@ -1,0 +1,57 @@
+<odoo>
+
+    <record model="ir.ui.view" id="sale_inherit_form">
+            <field name="name">Paiement</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+               <field name="arch" type="xml">
+
+                   <xpath expr="//page[1]" position="before">
+                       <page string="Details">
+                           <field name="mode_du_paiement"/>
+                       </page>
+                   </xpath>
+                    <xpath expr="//field[@name='partner_id']" position="after">
+                        <field name="diagnostic"/>
+                        <field name="prix"/>
+                        <field name="tax"/>
+                   </xpath>
+                   <xpath expr="//field[@name='prix']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                   </xpath>
+                     <xpath expr="//field[@name='tax']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                   </xpath>
+                   <xpath expr="//field[@name='validity_date']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                   </xpath>
+                  <xpath expr="//field[@name='partner_id']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                   </xpath>
+
+                   <xpath expr="//field[@name='partner_id']" position="after">
+                        <field name="partner_id" string="patient" domain="[('type','=','patient')]"/>
+                   </xpath>
+                   <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                   </xpath>
+                     <!--field name="product_id" position="after">
+                         <field name="sale_oorder_templete_id" domain="[('type','=','service')]"/-->
+
+                 <!--xpath expr="//field[@name='order_line']//form//group//group//field[@name='product_id']" position="after">
+                     <field name="product_id" domain="[('type','=','service')]"/>
+                     </xpath-->
+
+               </field>
+        </record>
+       <record model="ir.actions.act_window" id="paiement_action">
+            <field name="name">Paiement</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+
+
+        </record>
+ <!-- Top menu item -->
+        <menuitem name="Paiement" id="cabinet_paiement_cat" parent="cabinet_menu_root"
+                  sequence="5" action="paiement_action"/>
+</odoo>
